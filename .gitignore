@@ -1,0 +1,11 @@
+./
+../
+.classpath
+.git/
+.project
+.settings/
+allure-results/
+Results/
+target/
+test-output/
+
