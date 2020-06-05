@@ -1,4 +1,4 @@
-Framework name: POM2020
+Framework name: POM_Automation_Framework
 Created By: Jahangir Hossain Khan
 
 Framework Description:
