@@ -12,8 +12,12 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
-public class TestUtils {
+import base.Driver;
+
+public class TestUtils{
 	
 	static String projectPath;
 	static XSSFWorkbook workBook;
@@ -81,5 +85,26 @@ public class TestUtils {
 		return prop;
 	}
 
+	/**
+	 * Method name :getRandomBetweenRange
+	 * @param min
+	 * @param max
+	 * @return
+	 */
+	public int getRandomBetweenRange(int min, int max){
+	    double x = (Math.random()*((max-min)+1))+min;
+	    return (int) x;
+	}
+
+	public void dropDown(WebElement element) {
+		try {
+			Select select = new Select(element);
+			if (element.isDisplayed()) {
+				select.deselectByValue(element.getText());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }

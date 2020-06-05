@@ -6,17 +6,21 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import com.relevantcodes.extentreports.ExtentTest;
+
+import page.AdminPage;
 import page.LoginPage;
 @Listeners(listener.TestListener.class)
 public class TestBase extends Driver{
 	
 	public static LoginPage loginPage;
 	public ExtentTest extentTest;
+	public static AdminPage adminPage;
 	
 	@BeforeMethod
 	public void setup() {	
 		setDriver();
-		loginPage = PageFactory.initElements(driver, LoginPage.class);		
+		loginPage = PageFactory.initElements(driver, LoginPage.class);
+		adminPage = PageFactory.initElements(driver, AdminPage.class);
 	}
 	
 
