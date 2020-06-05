@@ -7,13 +7,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import utils.TestUtils;
 
-public class Driver extends TestUtils {
+public class Driver {
+	
 
 	public static WebDriver driver;
-	
-	public static ThreadLocal<WebDriver> tdriver = new ThreadLocal<WebDriver>();	
+		
 	public static void setDriver() {
-		String browser = getProperty("browser");
+		String browser = TestUtils.getProperty("browser");
 		if(browser.equalsIgnoreCase("chrome")) {
 			System.setProperty("webdriver.chrome.driver", "./src/main/resources/exe_files/chromedriver.exe");
 			driver = new ChromeDriver();
@@ -25,7 +25,7 @@ public class Driver extends TestUtils {
 			driver = new InternetExplorerDriver();
 		}
 		driver.manage().window().maximize();
-		driver.get(getProperty("appUrl"));
+		driver.get(TestUtils.getProperty("appUrl"));
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);		
 	}
 

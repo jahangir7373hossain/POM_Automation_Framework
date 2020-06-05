@@ -37,6 +37,7 @@ import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
 import base.TestBase;
+import utils.TestUtils;
 
 public class TestListener implements ITestListener {
 
@@ -55,7 +56,7 @@ public class TestListener implements ITestListener {
 
 	WebDriver driver;
 	static TestBase testBase = new TestBase();
-	private static String environment = testBase.getProperty("testEnv").toUpperCase();
+	private static String environment = TestUtils.getProperty("testEnv").toUpperCase();
 
 	/**
 	 * Document
@@ -275,7 +276,7 @@ public class TestListener implements ITestListener {
 
 		String logs = "";
 
-		logs = "Browser: " + testBase.getProperty("browser");
+		logs = "Browser: " + TestUtils.getProperty("browser");
 
 		Paragraph p2 = new Paragraph(logs,
 				FontFactory.getFont(FontFactory.HELVETICA, 12, Font.ITALIC, new Color(0, 0, 0)));

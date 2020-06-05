@@ -27,4 +27,22 @@ public class AdminPage {
 	public List<WebElement> listOfUsername;
 	@FindBy(css = "td[class='left']")
 	public List<WebElement> usernameDetailsFromList;
+	@FindBy(xpath = "//input[@value='Add']")
+	public WebElement addButton;
+	@FindBy(css = "select[id='systemUser_userType']")
+	public WebElement addUserRoleDropDown;
+	@FindBy(xpath = "//input[@id='systemUser_employeeName_empName']")
+	public WebElement addUserEmployeeName;
+	@FindBy(xpath = "//input[@id='systemUser_userName']")
+	public WebElement addUserUsername;
+	@FindBy(css = "//select[@id='systemUser_status']")
+	public WebElement addUserStatusDropDown;
+	@FindBy(xpath = "//input[@id='btnSave']")
+	public WebElement addUserSaveButton;
+	@FindBy(css = "input[type='checkbox']")
+	public List<WebElement> usernameCheckBox;
+	@FindBy(css = "input[type='submit']")
+	public WebElement deleteUser;
+	@FindBy(xpath = "//input[@id='dialogDeleteBtn']")
+	public WebElement confirmDeleteButton;
 }

@@ -9,9 +9,11 @@ import com.relevantcodes.extentreports.ExtentTest;
 
 import page.AdminPage;
 import page.LoginPage;
+import utils.TestUtils;
 @Listeners(listener.TestListener.class)
 public class TestBase extends Driver{
 	
+	TestUtils ts = new TestUtils();
 	public static LoginPage loginPage;
 	public ExtentTest extentTest;
 	public static AdminPage adminPage;
@@ -25,8 +27,13 @@ public class TestBase extends Driver{
 	
 
 	@AfterMethod
-	public void tearDowon(ITestResult result) throws IOException {		
-		driver.quit();
+	public void tearDowon(ITestResult result){
+		try {
+			driver.quit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	/**
@@ -40,11 +47,11 @@ public class TestBase extends Driver{
 		try {
 		loginPage.usernameField.clear();
 		System.out.println("Class name: "+ className);
-		loginPage.usernameField.sendKeys(getUsernameAndPasswordBasedUponTestCase(testCaseName,className).get(0));
-		System.out.println("Username is: " +getUsernameAndPasswordBasedUponTestCase(testCaseName,className).get(0));
+		loginPage.usernameField.sendKeys(ts.getUsernameAndPasswordBasedUponTestCase(testCaseName,className).get(0));
+		System.out.println("Username is: " +ts.getUsernameAndPasswordBasedUponTestCase(testCaseName,className).get(0));
 		loginPage.passwordField.clear();
-		loginPage.passwordField.sendKeys(getUsernameAndPasswordBasedUponTestCase(testCaseName,className).get(1));
-		System.out.println("Password is: " +getUsernameAndPasswordBasedUponTestCase(testCaseName,className).get(1));
+		loginPage.passwordField.sendKeys(ts.getUsernameAndPasswordBasedUponTestCase(testCaseName,className).get(1));
+		System.out.println("Password is: " +ts.getUsernameAndPasswordBasedUponTestCase(testCaseName,className).get(1));
 		loginPage.submittButton.click();
 		}catch (Exception exp) {
 			System.out.println(exp.getMessage());

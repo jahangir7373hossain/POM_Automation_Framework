@@ -6,22 +6,28 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import base.Driver;
+import base.TestBase;
 
-public class TestUtils{
-	
+public class TestUtils extends Driver{
 	static String projectPath;
 	static XSSFWorkbook workBook;
 	static XSSFSheet sheet;
+	
 	/**
 	 * Method name: getUsernameAndPasswordBasedUponTestCase
 	 * Method Description: This method will fetch user name and password based on class name and test case requirement from excel
@@ -95,13 +101,36 @@ public class TestUtils{
 	    double x = (Math.random()*((max-min)+1))+min;
 	    return (int) x;
 	}
+	
+	public String getRandomString() {
+		String SALTCHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		StringBuilder salt = new StringBuilder();
+		Random rnd = new Random();
+		while (salt.length() < 6) { // length of the random string.
+			int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+			salt.append(SALTCHARS.charAt(index));
+		}
+		String saltStr = salt.toString();
+		return saltStr;
 
-	public void dropDown(WebElement element) {
+	}
+
+	public void dropDown(WebElement element, String text) {
 		try {
 			Select select = new Select(element);
 			if (element.isDisplayed()) {
-				select.deselectByValue(element.getText());
+				//String elmTxt = element.getText();	
+				select.selectByVisibleText(text);
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void explicitWait(WebElement element) {
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, 5);
+			wait.until(ExpectedConditions.elementToBeClickable(element));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
